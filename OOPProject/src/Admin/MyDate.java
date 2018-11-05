@@ -1,12 +1,29 @@
 package Admin;
 
-import java.util.Date;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.sql.Date;
 
 public class MyDate 
 {
 	private static Date currDate;
 	private final static long MILLISECONDS_PER_DAY = (long)8.64e+7;
 	
+	static
+	{
+		Date date = MyDate.getDate(2018, 1, 1);//Default
+		try(ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("currdate.txt")))
+		{
+			date = (Date) objectInputStream.readObject();
+		}
+		catch(Exception e) 
+		{
+			System.out.println("Could'nt recover current date information");
+		}
+		currDate = date;
+	}
 	
 	public static Date getDate(int year, int month, int date)
 	{
@@ -19,9 +36,18 @@ public class MyDate
 	{
 		return currDate;
 	}
+	
 	public static void setDate(int year, int month, int date)
 	{
 		currDate = getDate(year, month, date);
+		try(ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("currdate.txt")))
+		{
+			objectOutputStream.writeObject(currDate);
+		}
+		catch(Exception e)
+		{
+			System.out.println("IO Exception");
+		}
 	}
 	
 	public static int getIndex(Date d)//Returns the index of the date on the array.

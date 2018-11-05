@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
 public class RegisterFrame extends JFrame {
@@ -27,7 +28,6 @@ public class RegisterFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField Name_Field;
 	private JTextField DOB_Field;
-	private JTextField Add_Field;
 	private JTextField Email_Field;
 	private JTextField UName_Field;
 	private JPasswordField FirstPass_Field;
@@ -123,10 +123,10 @@ public class RegisterFrame extends JFrame {
 		contentPane.add(DOB_Field);
 		DOB_Field.setColumns(10);
 		
-		Add_Field = new JTextField();
-		Add_Field.setBounds(306, 275, 204, 53);
+		JTextArea Add_Field = new JTextArea();
+		Add_Field.setForeground(new Color(0, 0, 0));
+		Add_Field.setBounds(305, 275, 204, 53);
 		contentPane.add(Add_Field);
-		Add_Field.setColumns(10);
 		
 		Email_Field =  new JTextField();
 		Email_Field.setBounds(306, 355, 204, 29);
@@ -250,9 +250,20 @@ public class RegisterFrame extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		contentPane.add(btnNewButton);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setBounds(795, 95, 40, 54);
-		contentPane.add(label_2);
+		JLabel Home_label = new JLabel("");
+		Image img4=new ImageIcon(this.getClass().getResource("/Home icon.png")).getImage();
+		Home_label.setIcon(new ImageIcon(img4));
+		Home_label.setToolTipText("Back to Home");
+		Home_label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				WelcomeFrame obj=new WelcomeFrame();
+				obj.Welcome_frame.setVisible(true);
+				dispose();
+			}
+		});
+		Home_label.setBounds(834, 11, 40, 54);
+		contentPane.add(Home_label);
 		
 		checklbl = new JLabel("");
 		checklbl = new JLabel("");
@@ -262,18 +273,11 @@ public class RegisterFrame extends JFrame {
 		checklbl.setIcon(new ImageIcon(error));
 		contentPane.add(checklbl);
 		
-		JLabel Home_label = new JLabel("");
-		Home_label.setToolTipText("Back to Home");
-		Home_label.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				WelcomeFrame obj=new WelcomeFrame();
-				obj.Welcome_frame.setVisible(true);
-				dispose();
-			}
-		});
-		Home_label.setBounds(834, 11, 40, 54);
-		Image img4=new ImageIcon(this.getClass().getResource("/Home icon.png")).getImage();
-		Home_label.setIcon(new ImageIcon(img4));
+		JLabel label_3 = new JLabel("-Your Stay our Responsibility");
+		label_3.setForeground(new Color(102, 0, 51));
+		label_3.setFont(new Font("Consolas", Font.ITALIC, 23));
+		label_3.setBounds(290, 11, 399, 65);
+		contentPane.add(label_3);
+
 	}
 }

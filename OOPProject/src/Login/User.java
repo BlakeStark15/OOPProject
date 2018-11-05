@@ -94,12 +94,34 @@ public class User
 				return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		finally {
 			MyConnection.closeConnection();
 		}
 		return false;
+	}
+	
+	public static String findName(String username)
+	{
+		
+		MyConnection.getConnection();
+		String query = "select name from userinfo where username = '"+username+"'";
+		ResultSet rs = MyConnection.executeQuery(query);
+		try
+		{
+			if(rs.next())
+			return rs.getString(1);
+			else return null; 
+			
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			return "ptr";
+		}
+		finally {
+			MyConnection.closeConnection();
+		}
+
 	}
 	
 }

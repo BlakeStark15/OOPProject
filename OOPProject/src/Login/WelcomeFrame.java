@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 public class WelcomeFrame {
 
-	JFrame Welcome_frame;
+	public JFrame Welcome_frame;
 
 	/**
 	 * Launch the application.
