@@ -3,6 +3,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
+
+import Admin.AdminFrame;
 import User.UserFrame;
 
 
@@ -65,9 +67,18 @@ public class LoginFrame extends JFrame {
 					{
 						errLabel.setText("Successful Login.");
 						JOptionPane.showMessageDialog(null,errLabel);
-						UserFrame obj=new UserFrame(UserNameField.getText());
-						obj.setVisible(true);
-						dispose();
+						String username = UserNameField.getText();
+						if(username.equals("raghu")||username.equals("ankit")||username.equals("nihal")||username.equals("simran"))
+						{
+							new AdminFrame(username).setVisible(true);
+							dispose();
+						}
+						else
+						{
+							UserFrame obj=new UserFrame(username);
+							obj.setVisible(true);
+							dispose();
+						}
 					}
 					else
 					{
@@ -98,9 +109,18 @@ public class LoginFrame extends JFrame {
 				{
 					errLabel.setText("Successful Login.");
 					JOptionPane.showMessageDialog(null,errLabel);
-					UserFrame obj=new UserFrame(UserNameField.getText());
-					obj.setVisible(true);
-					dispose();
+					String username = UserNameField.getText();
+					if(username.equals("raghu")||username.equals("ankit")||username.equals("nihal")||username.equals("simran"))
+					{
+						new AdminFrame(username).setVisible(true);
+						dispose();
+					}
+					else
+					{
+						UserFrame obj=new UserFrame(username);
+						obj.setVisible(true);
+						dispose();
+					}
 				}
 				else
 				{
